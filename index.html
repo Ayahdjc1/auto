@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автосалон "Автоэлегант"</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Пользовательские стили -->
+    <link rel="stylesheet" href="styles.css">
+     <link rel="icon" href="AA.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+        .container1 {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+        .footer p {
+            margin-bottom: 0;
+        }
+        .section-header {
+            text-align: left;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Автоэлегант</a>
+    <!-- Добавим кнопку для мобильных устройств -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Меню навигации -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="catalog.html">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Контакты</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Заголовок и описание -->
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-6 text-left"> <!-- Для мобильных устройств будет занимать всю ширину -->
+      <h1 class="section-header">Добро пожаловать в автосалон "Автоэлегант"</h1>
+      <p class="lead">Автосалон "Автоэлегант" предлагает вам широкий выбор высококачественных автомобилей от ведущих мировых производителей...</p>
+    </div>
+    <div class="col-md-6">
+      <img src="welcome_image.jpg" class="img-fluid mx-auto d-block mb-4" alt="Добро пожаловать в автосалон"> <!-- Добавлены классы mx-auto и d-block для центрирования и mb-4 для отступа снизу -->
+    </div>
+  </div>
+</div>
+
+<!-- Секция "О нас" -->
+<div class="container-fluid mt-5" style="background-color: #f8f9fa;">
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-6">
+      <img src="about_us_image.jpg" class="img-fluid mx-auto d-block mb-4" alt="О нас"> <!-- Добавлены классы mx-auto и d-block для центрирования и mb-4 для отступа снизу -->
+    </div>
+    <div class="col-md-6 text-left">
+      <h2 class="section-header">О нас</h2>
+      <p>Мы являемся одним из лидеров на рынке автомобильной торговли уже более 10 лет. Наша команда состоит из профессионалов, готовых предложить вам высокий уровень сервиса и поддержки на каждом этапе вашей покупки.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Секция "Наши услуги" -->
+<div class="container-fluid mt-5" style="background-color: #ffffff;">
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-6 text-left">
+      <h2 class="section-header">Наши услуги</h2>
+      <ul>
+        <li>Продажа новых и подержанных автомобилей: от экономичных седанов до роскошных внедорожников.</li>
+        <li>Trade-in: обмен вашего старого автомобиля на новый с выгодой.</li>
+        <li>Финансовые услуги: помощь в оформлении кредита или лизинга на выгодных условиях.</li>
+        <li>Сервисное обслуживание: наши опытные мастера обеспечат ваш автомобиль качественным обслуживанием и ремонтом.</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <img src="services_image.jpg" class="img-fluid mx-auto d-block mb-4" alt="Наши услуги"> <!-- Добавлены классы mx-auto и d-block для центрирования и mb-4 для отступа снизу -->
+    </div>
+  </div>
+</div>
+
+<!-- Секция "Наши партнеры" -->
+<div class="container-fluid mt-5" style="background-color: #f8f9fa;">
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-6">
+      <img src="partners_image.jpg" class="img-fluid mx-auto d-block mb-4" alt="Наши партнеры"> <!-- Добавлены классы mx-auto и d-block для центрирования и mb-4 для отступа снизу -->
+    </div>
+    <div class="col-md-6 text-left">
+      <h2 class="section-header">Наши партнеры</h2>
+      <p>Мы гордимся партнерством с ведущими автопроизводителями и финансовыми учреждениями, такими как Toyota, BMW, Volkswagen, и другими, что позволяет нам предложить вам лучшие цены и условия на автомобили и финансовые продукты.</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Футер -->
+<footer class="footer mt-5">
+  <div class="container text-center">
+    <p>&copy; 2024 Автосалон "Автоэлегант". Все права защищены.</p>
+  </div>
+</footer>
+
+<!-- JavaScript и Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автосалон "Автоэлегант"</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Пользовательские стили -->
+    <link rel="stylesheet" href="styles.css">
+     <link rel="icon" href="AA.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+        .container1 {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+        .footer p {
+            margin-bottom: 0;
+        }
+        .section-header {
+            text-align: left;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Автоэлегант</a>
+    <!-- Добавим кнопку для мобильных устройств -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Меню навигации -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="index.html">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="catalog.html">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="contact.html">Контакты</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Контактная информация -->
+<div class="container container1 mt-5" >
+  <h1 class="mb-4">Контакты</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h4><i class="fas fa-map-marker-alt"></i> Адрес:</h4>
+      <p>Малиновского 54А/1</p>
+      <h4><i class="fas fa-phone-alt"></i> Телефон:</h4>
+      <p>+7 (XXX) XXX-XX-XX</p>
+      <h4><i class="fas fa-envelope"></i> Электронная почта:</h4>
+      <p>info@autoelegant.ru</p>
+    </div>
+    <div class="col-md-6">
+      <img src="location.jpg" alt="Как нас найти" class="img-fluid">
+    </div>
+  </div>
+</div>
+
+<!-- Режим работы -->
+<div class="container container1 mt-5">
+  <h2>Режим работы</h2>
+  <p>Понедельник - Суббота: 9:00 - 18:00</p>
+  <p>Воскресенье: выходной</p>
+</div>
+
+<!-- Секция "Социальные сети" -->
+<div class="container container1 mt-5">
+  <h2>Социальные сети</h2>
+  <p>Подписывайтесь на нас в социальных сетях, чтобы быть в курсе последних новостей и акций:</p>
+  <ul class="list-inline">
+    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+  </ul>
+</div>
+
+<!-- Форма обратной связи -->
+<div class="container container1 mt-5">
+  <h2>Форма обратной связи</h2>
+  <form action="contact_form_handler.php" method="POST">
+    <div class="form-group">
+      <label for="name">Имя</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="contact">Ваш email</label>
+      <input type="email" class="form-control" id="contact" name="contact">
+    </div>
+    <div class="form-group">
+      <label for="phone">Номер телефона</label>
+      <input type="tel" class="form-control" id="phone" name="phone">
+    </div>
+    <div class="form-group">
+      <label for="message">Сообщение</label>
+      <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+  </form>
+</div>
+
+<!-- Всплывающее уведомление -->
+<div id="success-alert" class="alert alert-success alert-dismissible fade show" style="display:none;" role="alert">
+  Ваше сообщение успешно отправлено!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- Футер -->
+<footer class="footer mt-5">
+  <div class="container text-center">
+    <p>&copy; 2024 Автосалон "Автоэлегант". Все права защищены.</p>
+  </div>
+</footer>
+
+<!-- JavaScript и Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- JavaScript для всплывающего уведомления -->
+<script>
+  // Проверяем параметр в URL для отображения уведомления
+  const urlParams = new URLSearchParams(window.location.search);
+  const status = urlParams.get('status');
+  if (status === 'success') {
+    document.getElementById('success-alert').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('success-alert').style.display = 'none';
+    }, 5000); // Уведомление исчезнет через 5 секунд (5000 миллисекунд)
+  }
+</script>
+
+</body>
+</html>
