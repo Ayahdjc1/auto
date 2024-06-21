@@ -72,17 +72,6 @@
 </style>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Каталог автомобилей</h2>
-    <!-- Фильтр -->
-    <div class="row mb-4">
-        <div class="col-md-6 offset-md-3">
-            <select id="brandFilter" class="form-control">
-                <option value="">Выберите марку</option>
-                <option value="car0">BMW</option>
-                <option value="car1">Audi</option>
-                <option value="car2">Mercedes-Benz</option>
-            </select>
-        </div>
-    </div>
     <!-- Карточки автомобилей -->
     <div class="row" id="carCatalog">
         <!-- Карточки автомобилей будут добавлены сюда -->
@@ -110,7 +99,7 @@
 </div>
 
 <!-- Футер -->
-<footer class="footer mt-5 fixed-bottom">
+<footer class="footer mt-5">
     <div class="container text-center">
         <p>&copy; 2024 Автосалон "Автоэлегант". Все права защищены.</p>
     </div>
@@ -124,55 +113,28 @@
 
 <!-- JavaScript для загрузки данных из JSON и отображения модального окна -->
 <script>
-    // Данные о машинах в формате JSON
-    const mysql = require('mysql');
-
-    // Подключение к базе данных MySQL
-    const connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'user1',
-      password: '',
-      database: 'cars'
-    });
-    
-    // Запрос к базе данных
-    connection.query('SELECT * FROM таблица', (error, results, fields) => {
-      if (error) {
-        console.error('Ошибка при выполнении запроса: ', error);
-        return;
-      }
-    
-      // Преобразование результатов запроса в формат JSON
-      const data = results.map(row => {
-        return {
-          марка: row.марка,
-          модель: row.модель,
-          изображение: row.изображение,
-          год: row.год,
-          топливо: row.топливо,
-          объем: row.объем,
-          мощность: row.мощность,
-          пробег: row.пробег
+    // Функция для загрузки JSON файла и обработки данных
+    function loadJSON(callback) {   
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', 'cars.json', true); 
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == 200) {
+                callback(xobj.responseText);
+            }
         };
-      });
-    
-      // Вывод данных в формате JSON
-      console.log(JSON.stringify(data, null, 2));
-    
-      // Закрытие соединения с базой данных
-      connection.end();
-    });
+        xobj.send(null);  
+    }
 
-    var cars = data
     // Функция для отображения карточек автомобилей
     function displayCars(cars) {
-        var carCatalog = $('#carCatalog');
-        carCatalog.empty(); // Очищаем текущие карточки
+        var carCatalog = document.getElementById('carCatalog');
+        carCatalog.innerHTML = ''; // Очищаем текущие карточки
 
         // Создаем карточки для каждой машины
         cars.forEach(function (car, index) {
             var cardHtml = `
-                <div class="col-md-4" id="car${index}">
+                <div class="col-md-4" id="car${index}" style="padding-top:1rem; padding-bottom:20vh">
                     <div class="card">
                         <img src="${car.изображение}" class="card-img-top img-fluid" alt="${car.марка} ${car.модель}">
                         <div class="card-body">
@@ -187,57 +149,47 @@
                     </div>
                 </div>
             `;
-            carCatalog.append(cardHtml);
+            carCatalog.innerHTML += cardHtml;
         });
     }
 
-    // Функция для фильтрации карточек автомобилей по марке
-    // Функция для фильтрации карточек автомобилей по марке
-function filterCarsByBrand() {
-    var selectedBrand = $('#brandFilter').val(); // Получаем выбранную марку из выпадающего списка
-    if (selectedBrand === '') {
-        // Если не выбрана марка, показываем все карточки
-        $('#carCatalog > div').show();
-    } else {
-        // Иначе скрываем карточки, которые не соответствуют выбранной марке
-        $('#carCatalog > div').hide();
-        $('#' + selectedBrand).show();
+    // Функция для отображения подробной информации о выбранном автомобиле
+    function showCarDetails(brand, model, image, year, fuel, volume, power, mileage) {
+        // Заполняем модальное окно информацией о выбранном автомобиле
+        var modalBody = document.getElementById('carDetailsBody');
+        modalBody.innerHTML = ''; // Очищаем содержимое модального окна
+
+        var carDetailsHtml = `
+            <img src="${image}" class="img-fluid mb-3" alt="${brand} ${model}">
+            <p><strong>Марка:</strong> ${brand}</p>
+            <p><strong>Модель:</strong> ${model}</p>
+            <p><strong>Год:</strong> ${year}</p>
+            <p><strong>Топливо:</strong> ${fuel}</p>
+            <p><strong>Объем:</strong> ${volume}</p>
+            <p><strong>Мощность:</strong> ${power}</p>
+            <p><strong>Пробег:</strong> ${mileage}</p>
+            <a type='button' class="btn btn-primary" href='http://autoaligant.ru/contact.html#contact'>Заказать</a>
+        `;
+        modalBody.innerHTML = carDetailsHtml;
+
+        // Показываем модальное окно
+        $('#carDetailsModal').modal('show');
     }
-}
 
-// Функция для отображения подробной информации о выбранном автомобиле
-function showCarDetails(brand, model, image, year, fuel, volume, power, mileage) {
-    // Заполняем модальное окно информацией о выбранном автомобиле
-    var modalBody = $('#carDetailsBody');
-    modalBody.empty(); // Очищаем содержимое модального окна
+    // Функция для инициализации страницы после загрузки
+    function initializePage() {
+        // Загружаем JSON файл и обрабатываем его данные
+        loadJSON(function(response) {
+            var cars = JSON.parse(response); // Преобразуем строку JSON в объект JavaScript
+            displayCars(cars); // Отображаем карточки автомобилей
+        });
+    }
 
-    var carDetailsHtml = `
-        <img src="${image}" class="img-fluid mb-3" alt="${brand} ${model}">
-        <p><strong>Марка:</strong> ${brand}</p>
-        <p><strong>Модель:</strong> ${model}</p>
-        <p><strong>Год:</strong> ${year}</p>
-        <p><strong>Топливо:</strong> ${fuel}</p>
-        <p><strong>Объем:</strong> ${volume}</p>
-        <p><strong>Мощность:</strong> ${power}</p>
-        <p><strong>Пробег:</strong> ${mileage}</p>
-    `;
-    modalBody.append(carDetailsHtml);
-
-    // Показываем модальное окно
-    $('#carDetailsModal').modal('show');
-}
-
-    // Обработчик изменения выбранной марки в фильтре
-    $('#brandFilter').change(function () {
-        filterCarsByBrand();
-    });
-
-    // Обработчик загрузки страницы, который сразу применяет фильтр, если выбрана марка
-    $(document).ready(function () {
-        displayCars(cars); // Отображаем все машины при загрузке страницы
-        filterCarsByBrand(); // Применяем фильтр, если выбрана марка
+    // Вызываем функцию инициализации страницы после загрузки
+    document.addEventListener('DOMContentLoaded', function () {
+        initializePage();
     });
 </script>
+
 </body>
 </html>
-

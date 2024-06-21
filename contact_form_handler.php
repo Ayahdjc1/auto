@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST['message'];
     
     // Заготовленный email для отправки информации о заявке
-    $admin_email = "your_admin_email@example.com";
+    $admin_email = "pavpyarka@mail.ru";
     
     // Формируем сообщение
     $subject = "Новая заявка с сайта";
@@ -17,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Отправляем уведомление пользователю
     $user_subject = "Ваша заявка принята";
     $user_body = "Спасибо за ваше сообщение, $name! Мы рассмотрим ваш запрос в ближайшее время.";
-    $headers = "From: your_website@example.com";
+    $headers = "From: pavpyarka@mail.ru";
     mail($contact, $user_subject, $user_body, $headers);
     
     // Отправляем информацию о заявке админу
-    mail($admin_email, $subject, $body);
+    mail($admin_email, $subject, $body, $headers);
 
     // Редирект обратно на страницу контактов
     header("Location: contact.html");
